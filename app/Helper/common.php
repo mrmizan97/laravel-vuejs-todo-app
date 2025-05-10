@@ -14,6 +14,9 @@ if (!function_exists('errorResponse')) {
 if (!function_exists('validateResponse')) {
     function validateResponse($errors, $code = 422)
     {
+        $errors = collect($errors)->map(function ($messages) {
+            return is_array($messages) ? $messages[0] : $messages;
+        });
         return response()->json([
             'status' => false,
             'message' => 'Validation failed.',

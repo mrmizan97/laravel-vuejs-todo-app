@@ -18,7 +18,7 @@ class TodoController extends Controller
     {
         try {
             $todos = $this->todoService->getAll();
-            return successResponse('Todo list fetched successfully.', $todos);
+            return successResponse('Todo list fetched successfully.', ['todo'=>$todos]);
         } catch (Throwable $th) {
             return errorResponse($th->getMessage(), 500);
         }
